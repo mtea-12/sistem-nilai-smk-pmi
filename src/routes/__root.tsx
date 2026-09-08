@@ -133,11 +133,11 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <NilaiProvider>
+        <DataProvider>
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <Outlet />
           <Toaster richColors position="top-center" />
-        </NilaiProvider>
+        </DataProvider>
       </AuthProvider>
     </QueryClientProvider>
   );
