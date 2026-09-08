@@ -4,7 +4,8 @@ import { AppLayout, KartuStat } from "@/components/AppLayout";
 import { PanelTabel, Pilih, thCls, tdCls, Lencana, KosongTabel } from "@/components/Tabel";
 import { useAuth } from "@/lib/auth";
 import { useNilai } from "@/lib/nilai-store";
-import { kelas, siswa, mapelKelas, kodeMapel, kkmMapel, nilaiAkhir, predikat, namaGuru } from "@/lib/data";
+import { nilaiAkhir, predikat } from "@/lib/data";
+import { useData } from "@/lib/db";
 import { Users, TrendingUp, AlertTriangle, Award } from "lucide-react";
 
 export const Route = createFileRoute("/rekap-kelas")({
@@ -20,6 +21,7 @@ export const Route = createFileRoute("/rekap-kelas")({
 });
 
 function RekapKelas() {
+  const { kelas, kkmMapel, kodeMapel, mapelKelas, namaGuru, siswa } = useData();
   const { akun } = useAuth();
   const { nilai } = useNilai();
   const k = kelas.find((x) => x.waliId === akun?.refId);

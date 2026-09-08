@@ -2,7 +2,7 @@ import * as React from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { AppLayout } from "@/components/AppLayout";
 import { PanelTabel, thCls, tdCls, KosongTabel, Lencana } from "@/components/Tabel";
-import { kelas, siswa, namaGuru, mapelKelas } from "@/lib/data";
+import { useData } from "@/lib/db";
 
 export const Route = createFileRoute("/kelas")({
   head: () => ({
@@ -17,6 +17,7 @@ export const Route = createFileRoute("/kelas")({
 });
 
 function DataKelas() {
+  const { kelas, mapelKelas, namaGuru, siswa } = useData();
   const [cari, setCari] = React.useState("");
   const hasil = kelas.filter(
     (k) => k.nama.toLowerCase().includes(cari.toLowerCase()) || k.jurusan.toLowerCase().includes(cari.toLowerCase()),

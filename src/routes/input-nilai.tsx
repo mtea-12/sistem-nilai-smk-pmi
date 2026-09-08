@@ -6,7 +6,8 @@ import { AppLayout } from "@/components/AppLayout";
 import { PanelTabel, Pilih, thCls, tdCls, Lencana } from "@/components/Tabel";
 import { useAuth } from "@/lib/auth";
 import { useNilai } from "@/lib/nilai-store";
-import { guru, kelas, siswa, mapelKelas, namaMapel, kkmMapel, nilaiAkhir, predikat } from "@/lib/data";
+import { nilaiAkhir, predikat } from "@/lib/data";
+import { useData } from "@/lib/db";
 
 export const Route = createFileRoute("/input-nilai")({
   head: () => ({
@@ -21,6 +22,7 @@ export const Route = createFileRoute("/input-nilai")({
 });
 
 function InputNilai() {
+  const { guru, kelas, kkmMapel, mapelKelas, namaMapel, siswa } = useData();
   const { akun } = useAuth();
   const { nilai, simpan } = useNilai();
   const g = guru.find((x) => x.id === akun?.refId);

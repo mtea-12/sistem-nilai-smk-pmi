@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CalendarRange } from "lucide-react";
 import { AppLayout } from "@/components/AppLayout";
 import { PanelTabel, thCls, tdCls, Lencana } from "@/components/Tabel";
-import { tahunAjaran, SEKOLAH } from "@/lib/data";
+import { useData } from "@/lib/db";
 
 export const Route = createFileRoute("/tahun-ajaran")({
   head: () => ({
@@ -17,6 +17,7 @@ export const Route = createFileRoute("/tahun-ajaran")({
 });
 
 function TahunAjaranPage() {
+  const { SEKOLAH, tahunAjaran } = useData();
   const aktif = tahunAjaran.find((t) => t.aktif)!;
   return (
     <AppLayout judul="Tahun Ajaran" deskripsi="Periode akademik dan semester aktif">

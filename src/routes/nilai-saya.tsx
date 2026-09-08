@@ -3,7 +3,8 @@ import { AppLayout, KartuStat } from "@/components/AppLayout";
 import { PanelTabel, thCls, tdCls, Lencana } from "@/components/Tabel";
 import { useAuth } from "@/lib/auth";
 import { useNilai } from "@/lib/nilai-store";
-import { siswa, namaKelas, namaMapel, kkmMapel, nilaiAkhir, predikat } from "@/lib/data";
+import { nilaiAkhir, predikat } from "@/lib/data";
+import { useData } from "@/lib/db";
 import { TrendingUp, CheckCircle2, BookOpen } from "lucide-react";
 
 export const Route = createFileRoute("/nilai-saya")({
@@ -19,6 +20,7 @@ export const Route = createFileRoute("/nilai-saya")({
 });
 
 function NilaiSaya() {
+  const { kkmMapel, namaKelas, namaMapel, siswa } = useData();
   const { akun } = useAuth();
   const { nilai } = useNilai();
   const s = siswa.find((x) => x.id === akun?.refId);

@@ -2,7 +2,7 @@ import * as React from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { AppLayout } from "@/components/AppLayout";
 import { PanelTabel, Pilih, thCls, tdCls, KosongTabel, Lencana } from "@/components/Tabel";
-import { siswa, kelas, namaKelas } from "@/lib/data";
+import { useData } from "@/lib/db";
 
 export const Route = createFileRoute("/siswa")({
   head: () => ({
@@ -17,6 +17,7 @@ export const Route = createFileRoute("/siswa")({
 });
 
 function DataSiswa() {
+  const { kelas, namaKelas, siswa } = useData();
   const [cari, setCari] = React.useState("");
   const [kls, setKls] = React.useState("semua");
   const [jk, setJk] = React.useState("semua");

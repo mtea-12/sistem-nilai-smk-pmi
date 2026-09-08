@@ -5,18 +5,8 @@ import { AppLayout } from "@/components/AppLayout";
 import { Pilih } from "@/components/Tabel";
 import { useAuth } from "@/lib/auth";
 import { useNilai } from "@/lib/nilai-store";
-import {
-  SEKOLAH,
-  kelas,
-  siswa,
-  mapelKelas,
-  namaMapel,
-  kodeMapel,
-  kkmMapel,
-  nilaiAkhir,
-  predikat,
-  namaGuru,
-} from "@/lib/data";
+import { nilaiAkhir, predikat } from "@/lib/data";
+import { useData } from "@/lib/db";
 
 export const Route = createFileRoute("/rapor")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -35,6 +25,7 @@ export const Route = createFileRoute("/rapor")({
 });
 
 function Rapor() {
+  const { SEKOLAH, kelas, kkmMapel, kodeMapel, mapelKelas, namaGuru, namaMapel, siswa } = useData();
   const { akun } = useAuth();
   const { nilai } = useNilai();
   const pencarian = Route.useSearch();
