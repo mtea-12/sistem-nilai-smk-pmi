@@ -12,8 +12,12 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DasborRouteImport } from './routes/dasbor'
 import { Route as GuruRouteImport } from './routes/guru'
+import { Route as InputNilaiRouteImport } from './routes/input-nilai'
 import { Route as KelasRouteImport } from './routes/kelas'
 import { Route as MapelRouteImport } from './routes/mapel'
+import { Route as NilaiSayaRouteImport } from './routes/nilai-saya'
+import { Route as RekapKelasRouteImport } from './routes/rekap-kelas'
+import { Route as RekapNilaiRouteImport } from './routes/rekap-nilai'
 import { Route as SiswaRouteImport } from './routes/siswa'
 import { Route as TahunAjaranRouteImport } from './routes/tahun-ajaran'
 
@@ -32,6 +36,11 @@ const GuruRoute = GuruRouteImport.update({
   path: '/guru',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InputNilaiRoute = InputNilaiRouteImport.update({
+  id: '/input-nilai',
+  path: '/input-nilai',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const KelasRoute = KelasRouteImport.update({
   id: '/kelas',
   path: '/kelas',
@@ -40,6 +49,21 @@ const KelasRoute = KelasRouteImport.update({
 const MapelRoute = MapelRouteImport.update({
   id: '/mapel',
   path: '/mapel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NilaiSayaRoute = NilaiSayaRouteImport.update({
+  id: '/nilai-saya',
+  path: '/nilai-saya',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RekapKelasRoute = RekapKelasRouteImport.update({
+  id: '/rekap-kelas',
+  path: '/rekap-kelas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RekapNilaiRoute = RekapNilaiRouteImport.update({
+  id: '/rekap-nilai',
+  path: '/rekap-nilai',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SiswaRoute = SiswaRouteImport.update({
@@ -57,8 +81,12 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dasbor': typeof DasborRoute
   '/guru': typeof GuruRoute
+  '/input-nilai': typeof InputNilaiRoute
   '/kelas': typeof KelasRoute
   '/mapel': typeof MapelRoute
+  '/nilai-saya': typeof NilaiSayaRoute
+  '/rekap-kelas': typeof RekapKelasRoute
+  '/rekap-nilai': typeof RekapNilaiRoute
   '/siswa': typeof SiswaRoute
   '/tahun-ajaran': typeof TahunAjaranRoute
 }
@@ -66,8 +94,12 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dasbor': typeof DasborRoute
   '/guru': typeof GuruRoute
+  '/input-nilai': typeof InputNilaiRoute
   '/kelas': typeof KelasRoute
   '/mapel': typeof MapelRoute
+  '/nilai-saya': typeof NilaiSayaRoute
+  '/rekap-kelas': typeof RekapKelasRoute
+  '/rekap-nilai': typeof RekapNilaiRoute
   '/siswa': typeof SiswaRoute
   '/tahun-ajaran': typeof TahunAjaranRoute
 }
@@ -76,25 +108,53 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/dasbor': typeof DasborRoute
   '/guru': typeof GuruRoute
+  '/input-nilai': typeof InputNilaiRoute
   '/kelas': typeof KelasRoute
   '/mapel': typeof MapelRoute
+  '/nilai-saya': typeof NilaiSayaRoute
+  '/rekap-kelas': typeof RekapKelasRoute
+  '/rekap-nilai': typeof RekapNilaiRoute
   '/siswa': typeof SiswaRoute
   '/tahun-ajaran': typeof TahunAjaranRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/dasbor' | '/guru' | '/kelas' | '/mapel' | '/siswa' | '/tahun-ajaran'
+    | '/'
+    | '/dasbor'
+    | '/guru'
+    | '/input-nilai'
+    | '/kelas'
+    | '/mapel'
+    | '/nilai-saya'
+    | '/rekap-kelas'
+    | '/rekap-nilai'
+    | '/siswa'
+    | '/tahun-ajaran'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/dasbor' | '/guru' | '/kelas' | '/mapel' | '/siswa' | '/tahun-ajaran'
+    | '/'
+    | '/dasbor'
+    | '/guru'
+    | '/input-nilai'
+    | '/kelas'
+    | '/mapel'
+    | '/nilai-saya'
+    | '/rekap-kelas'
+    | '/rekap-nilai'
+    | '/siswa'
+    | '/tahun-ajaran'
   id:
     | '__root__'
     | '/'
     | '/dasbor'
     | '/guru'
+    | '/input-nilai'
     | '/kelas'
     | '/mapel'
+    | '/nilai-saya'
+    | '/rekap-kelas'
+    | '/rekap-nilai'
     | '/siswa'
     | '/tahun-ajaran'
   fileRoutesById: FileRoutesById
@@ -103,8 +163,12 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DasborRoute: typeof DasborRoute
   GuruRoute: typeof GuruRoute
+  InputNilaiRoute: typeof InputNilaiRoute
   KelasRoute: typeof KelasRoute
   MapelRoute: typeof MapelRoute
+  NilaiSayaRoute: typeof NilaiSayaRoute
+  RekapKelasRoute: typeof RekapKelasRoute
+  RekapNilaiRoute: typeof RekapNilaiRoute
   SiswaRoute: typeof SiswaRoute
   TahunAjaranRoute: typeof TahunAjaranRoute
 }
@@ -132,6 +196,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GuruRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/input-nilai': {
+      id: '/input-nilai'
+      path: '/input-nilai'
+      fullPath: '/input-nilai'
+      preLoaderRoute: typeof InputNilaiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/kelas': {
       id: '/kelas'
       path: '/kelas'
@@ -144,6 +215,27 @@ declare module '@tanstack/react-router' {
       path: '/mapel'
       fullPath: '/mapel'
       preLoaderRoute: typeof MapelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nilai-saya': {
+      id: '/nilai-saya'
+      path: '/nilai-saya'
+      fullPath: '/nilai-saya'
+      preLoaderRoute: typeof NilaiSayaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rekap-kelas': {
+      id: '/rekap-kelas'
+      path: '/rekap-kelas'
+      fullPath: '/rekap-kelas'
+      preLoaderRoute: typeof RekapKelasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rekap-nilai': {
+      id: '/rekap-nilai'
+      path: '/rekap-nilai'
+      fullPath: '/rekap-nilai'
+      preLoaderRoute: typeof RekapNilaiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/siswa': {
@@ -167,8 +259,12 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DasborRoute: DasborRoute,
   GuruRoute: GuruRoute,
+  InputNilaiRoute: InputNilaiRoute,
   KelasRoute: KelasRoute,
   MapelRoute: MapelRoute,
+  NilaiSayaRoute: NilaiSayaRoute,
+  RekapKelasRoute: RekapKelasRoute,
+  RekapNilaiRoute: RekapNilaiRoute,
   SiswaRoute: SiswaRoute,
   TahunAjaranRoute: TahunAjaranRoute,
 }
