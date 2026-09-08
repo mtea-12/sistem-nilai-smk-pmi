@@ -10,33 +10,103 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DasborRouteImport } from './routes/dasbor'
+import { Route as GuruRouteImport } from './routes/guru'
+import { Route as KelasRouteImport } from './routes/kelas'
+import { Route as MapelRouteImport } from './routes/mapel'
+import { Route as SiswaRouteImport } from './routes/siswa'
+import { Route as TahunAjaranRouteImport } from './routes/tahun-ajaran'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DasborRoute = DasborRouteImport.update({
+  id: '/dasbor',
+  path: '/dasbor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuruRoute = GuruRouteImport.update({
+  id: '/guru',
+  path: '/guru',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KelasRoute = KelasRouteImport.update({
+  id: '/kelas',
+  path: '/kelas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapelRoute = MapelRouteImport.update({
+  id: '/mapel',
+  path: '/mapel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SiswaRoute = SiswaRouteImport.update({
+  id: '/siswa',
+  path: '/siswa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TahunAjaranRoute = TahunAjaranRouteImport.update({
+  id: '/tahun-ajaran',
+  path: '/tahun-ajaran',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dasbor': typeof DasborRoute
+  '/guru': typeof GuruRoute
+  '/kelas': typeof KelasRoute
+  '/mapel': typeof MapelRoute
+  '/siswa': typeof SiswaRoute
+  '/tahun-ajaran': typeof TahunAjaranRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dasbor': typeof DasborRoute
+  '/guru': typeof GuruRoute
+  '/kelas': typeof KelasRoute
+  '/mapel': typeof MapelRoute
+  '/siswa': typeof SiswaRoute
+  '/tahun-ajaran': typeof TahunAjaranRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dasbor': typeof DasborRoute
+  '/guru': typeof GuruRoute
+  '/kelas': typeof KelasRoute
+  '/mapel': typeof MapelRoute
+  '/siswa': typeof SiswaRoute
+  '/tahun-ajaran': typeof TahunAjaranRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/dasbor' | '/guru' | '/kelas' | '/mapel' | '/siswa' | '/tahun-ajaran'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    '/' | '/dasbor' | '/guru' | '/kelas' | '/mapel' | '/siswa' | '/tahun-ajaran'
+  id:
+    | '__root__'
+    | '/'
+    | '/dasbor'
+    | '/guru'
+    | '/kelas'
+    | '/mapel'
+    | '/siswa'
+    | '/tahun-ajaran'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DasborRoute: typeof DasborRoute
+  GuruRoute: typeof GuruRoute
+  KelasRoute: typeof KelasRoute
+  MapelRoute: typeof MapelRoute
+  SiswaRoute: typeof SiswaRoute
+  TahunAjaranRoute: typeof TahunAjaranRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +118,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dasbor': {
+      id: '/dasbor'
+      path: '/dasbor'
+      fullPath: '/dasbor'
+      preLoaderRoute: typeof DasborRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guru': {
+      id: '/guru'
+      path: '/guru'
+      fullPath: '/guru'
+      preLoaderRoute: typeof GuruRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kelas': {
+      id: '/kelas'
+      path: '/kelas'
+      fullPath: '/kelas'
+      preLoaderRoute: typeof KelasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mapel': {
+      id: '/mapel'
+      path: '/mapel'
+      fullPath: '/mapel'
+      preLoaderRoute: typeof MapelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/siswa': {
+      id: '/siswa'
+      path: '/siswa'
+      fullPath: '/siswa'
+      preLoaderRoute: typeof SiswaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tahun-ajaran': {
+      id: '/tahun-ajaran'
+      path: '/tahun-ajaran'
+      fullPath: '/tahun-ajaran'
+      preLoaderRoute: typeof TahunAjaranRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DasborRoute: DasborRoute,
+  GuruRoute: GuruRoute,
+  KelasRoute: KelasRoute,
+  MapelRoute: MapelRoute,
+  SiswaRoute: SiswaRoute,
+  TahunAjaranRoute: TahunAjaranRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
