@@ -17,7 +17,7 @@ export const Route = createFileRoute("/tahun-ajaran")({
 });
 
 function TahunAjaranPage() {
-  const { SEKOLAH, tahunAjaran } = useData();
+  const { sekolah, tahunAjaran } = useData();
   const aktif = tahunAjaran.find((t) => t.aktif)!;
   return (
     <AppLayout judul="Tahun Ajaran" deskripsi="Periode akademik dan semester aktif">
@@ -40,9 +40,9 @@ function TahunAjaranPage() {
         </div>
         <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
           <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Identitas Sekolah</p>
-          <p className="mt-2 font-display text-base font-bold">{SEKOLAH.nama}</p>
-          <p className="mt-1 text-sm text-muted-foreground">NPSN {SEKOLAH.npsn}</p>
-          <p className="mt-1 text-sm text-muted-foreground">{SEKOLAH.alamat}</p>
+          <p className="mt-2 font-display text-base font-bold">{sekolah.nama}</p>
+          <p className="mt-1 text-sm text-muted-foreground">NPSN {sekolah.npsn}</p>
+          <p className="mt-1 text-sm text-muted-foreground">{sekolah.alamat}</p>
         </div>
       </div>
 

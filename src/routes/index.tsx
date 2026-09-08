@@ -4,7 +4,6 @@ import { toast } from "sonner";
 import { GraduationCap, LogIn, ShieldCheck } from "lucide-react";
 import { useAuth, akunDemo, labelPeran } from "@/lib/auth";
 import { siapkanAkunDemo } from "@/lib/demo.functions";
-import { SEKOLAH_DEFAULT } from "@/lib/data";
 
 export const Route = createFileRoute("/")({
   head: () => ({

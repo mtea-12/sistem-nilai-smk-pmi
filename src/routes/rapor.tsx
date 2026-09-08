@@ -25,7 +25,7 @@ export const Route = createFileRoute("/rapor")({
 });
 
 function Rapor() {
-  const { SEKOLAH, kelas, kkmMapel, kodeMapel, mapelKelas, namaGuru, namaMapel, siswa } = useData();
+  const { sekolah, kelas, kkmMapel, kodeMapel, mapelKelas, namaGuru, namaMapel, siswa } = useData();
   const { akun } = useAuth();
   const { nilai } = useNilai();
   const pencarian = Route.useSearch();
@@ -90,9 +90,9 @@ function Rapor() {
       <div className="print-area mx-auto max-w-4xl rounded-xl border border-border bg-card p-6 shadow-sm sm:p-10">
         <header className="border-b-4 border-double border-foreground/70 pb-4 text-center">
           <p className="text-xs font-semibold uppercase tracking-widest">Majelis Pendidikan Dasar dan Menengah</p>
-          <h2 className="font-display text-xl font-bold sm:text-2xl">{SEKOLAH.nama}</h2>
+          <h2 className="font-display text-xl font-bold sm:text-2xl">{sekolah.nama}</h2>
           <p className="text-xs text-muted-foreground">
-            {SEKOLAH.alamat} · NPSN {SEKOLAH.npsn}
+            {sekolah.alamat} · NPSN {sekolah.npsn}
           </p>
         </header>
 
@@ -199,7 +199,7 @@ function Rapor() {
           <div>
             <p>Kepala Sekolah</p>
             <div className="h-16" />
-            <p className="font-medium underline">{SEKOLAH.kepsek}</p>
+            <p className="font-medium underline">{sekolah.kepsek}</p>
           </div>
         </div>
       </div>
