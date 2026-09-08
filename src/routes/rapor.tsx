@@ -20,8 +20,9 @@ import {
 
 export const Route = createFileRoute("/rapor")({
   validateSearch: (search: Record<string, unknown>) => ({
-    siswa: typeof search["siswa"] === "string" ? (search["siswa"] as string) : undefined,
+    siswa: typeof search["siswa"] === "string" ? (search["siswa"] as string) : "",
   }),
+
   head: () => ({
     meta: [
       { title: "Rapor Siswa — SMK Muhammadiyah 1 Paguyangan" },

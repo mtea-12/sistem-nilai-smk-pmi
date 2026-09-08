@@ -65,7 +65,7 @@ function InputNilai() {
       return;
     }
     ids.forEach((id) => {
-      const d = draf[id];
+      const d = draf[id] ?? { tugas: "0", pts: "0", pas: "0" };
       simpan({
         siswaId: id,
         mapelId,
@@ -74,6 +74,7 @@ function InputNilai() {
         pas: Number(d.pas || 0),
       });
     });
+
     setDraf({});
     toast.success(`Nilai ${ids.length} siswa berhasil disimpan.`);
   }

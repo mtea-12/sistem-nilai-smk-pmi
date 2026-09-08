@@ -136,7 +136,7 @@ function buatSiswa(): Siswa[] {
         nama: `${depan} ${belakang}`,
         jk: laki ? "L" : "P",
         kelasId: k.id,
-        wali: namaAyah[Math.floor(acak(s + 3) * namaAyah.length)],
+        wali: namaAyah[Math.floor(acak(s + 3) * namaAyah.length)] as string,
       });
     }
   });
