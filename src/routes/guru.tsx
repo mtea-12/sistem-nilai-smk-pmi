@@ -2,7 +2,7 @@ import * as React from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { AppLayout } from "@/components/AppLayout";
 import { PanelTabel, thCls, tdCls, KosongTabel, Lencana } from "@/components/Tabel";
-import { guru, kelas, namaMapel } from "@/lib/data";
+import { useData } from "@/lib/db";
 
 export const Route = createFileRoute("/guru")({
   head: () => ({
@@ -17,6 +17,7 @@ export const Route = createFileRoute("/guru")({
 });
 
 function DataGuru() {
+  const { guru, kelas, namaMapel } = useData();
   const [cari, setCari] = React.useState("");
   const hasil = guru.filter(
     (g) => g.nama.toLowerCase().includes(cari.toLowerCase()) || g.nip.includes(cari),

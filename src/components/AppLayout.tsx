@@ -16,7 +16,8 @@ import {
   X,
 } from "lucide-react";
 import { useAuth, labelPeran } from "@/lib/auth";
-import { SEKOLAH, type Peran } from "@/lib/data";
+import { type Peran } from "@/lib/data";
+import { useData } from "@/lib/db";
 import { cn } from "@/lib/utils";
 
 type MenuItem = { to: string; label: string; icon: React.ElementType };
@@ -75,6 +76,7 @@ export function AppLayout({
   children: React.ReactNode;
 }) {
   const { akun, siap, keluar } = useAuth();
+  const { sekolah, tahunAjaran, memuat, galat } = useData();
   const navigate = useNavigate();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [buka, setBuka] = React.useState(false);
@@ -136,8 +138,7 @@ export function AppLayout({
         </div>
         <button
           onClick={() => {
-            keluar();
-            navigate({ to: "/", replace: true });
+            void keluar().then(() => navigate({ to: "/", replace: true }));
           }}
           className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-sidebar-foreground/85 transition-colors hover:bg-sidebar-accent"
         >
@@ -179,9 +180,22 @@ export function AppLayout({
             <div className="flex shrink-0 items-center gap-2">{aksi}</div>
           </div>
         </header>
-        <main className="p-4 sm:p-6">{children}</main>
+        <main className="p-4 sm:p-6">
+          {galat ? (
+            <div className="rounded-xl border border-destructive/40 bg-destructive/10 p-4 text-sm text-destructive">
+              Gagal memuat data dari server. Periksa koneksi lalu muat ulang halaman.
+            </div>
+          ) : memuat ? (
+            <div className="grid place-items-center rounded-xl border border-border bg-card p-10 text-sm text-muted-foreground">
+              Memuat data…
+            </div>
+          ) : (
+            children
+          )}
+        </main>
         <footer className="no-print border-t border-border px-6 py-4 text-center text-xs text-muted-foreground">
-          {SEKOLAH.nama} · Tahun Pelajaran 2025/2026 · Data demo
+          {sekolah.nama} · Tahun Pelajaran {tahunAjaran.find((t) => t.aktif)?.tahun ?? "-"} ·{" "}
+          {tahunAjaran.find((t) => t.aktif)?.semester ?? "-"}
         </footer>
       </div>
     </div>

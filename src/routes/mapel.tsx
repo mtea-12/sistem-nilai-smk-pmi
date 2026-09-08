@@ -2,7 +2,7 @@ import * as React from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { AppLayout } from "@/components/AppLayout";
 import { PanelTabel, Pilih, thCls, tdCls, KosongTabel, Lencana } from "@/components/Tabel";
-import { mapel, guru } from "@/lib/data";
+import { useData } from "@/lib/db";
 
 export const Route = createFileRoute("/mapel")({
   head: () => ({
@@ -17,6 +17,7 @@ export const Route = createFileRoute("/mapel")({
 });
 
 function DataMapel() {
+  const { guru, mapel } = useData();
   const [cari, setCari] = React.useState("");
   const [kel, setKel] = React.useState("semua");
 

@@ -4,7 +4,8 @@ import { AppLayout, KartuStat } from "@/components/AppLayout";
 import { PanelTabel, Pilih, thCls, tdCls, Lencana, KosongTabel } from "@/components/Tabel";
 import { useAuth } from "@/lib/auth";
 import { useNilai } from "@/lib/nilai-store";
-import { guru, kelas, siswa, mapelKelas, namaMapel, kkmMapel, nilaiAkhir, predikat } from "@/lib/data";
+import { nilaiAkhir, predikat } from "@/lib/data";
+import { useData } from "@/lib/db";
 import { TrendingUp, Users, CheckCircle2, XCircle } from "lucide-react";
 
 export const Route = createFileRoute("/rekap-nilai")({
@@ -20,6 +21,7 @@ export const Route = createFileRoute("/rekap-nilai")({
 });
 
 function RekapNilai() {
+  const { guru, kelas, kkmMapel, mapelKelas, namaMapel, siswa } = useData();
   const { akun } = useAuth();
   const { nilai } = useNilai();
   const g = guru.find((x) => x.id === akun?.refId);

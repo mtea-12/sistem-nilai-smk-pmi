@@ -13,18 +13,8 @@ import { AppLayout, KartuStat } from "@/components/AppLayout";
 import { Lencana } from "@/components/Tabel";
 import { useAuth, labelPeran } from "@/lib/auth";
 import { useNilai } from "@/lib/nilai-store";
-import {
-  guru,
-  kelas,
-  mapel,
-  siswa,
-  namaKelas,
-  namaMapel,
-  nilaiAkhir,
-  predikat,
-  kkmMapel,
-  mapelKelas,
-} from "@/lib/data";
+import { nilaiAkhir, predikat } from "@/lib/data";
+import { useData } from "@/lib/db";
 
 export const Route = createFileRoute("/dasbor")({
   head: () => ({
@@ -42,6 +32,7 @@ export const Route = createFileRoute("/dasbor")({
 });
 
 function Dasbor() {
+  const { guru, siswa } = useData();
   const { akun } = useAuth();
   const { nilai } = useNilai();
   if (!akun) return <AppLayout judul="Dasbor">{null}</AppLayout>;
@@ -74,6 +65,7 @@ function Dasbor() {
 }
 
 function AdminDasbor({ rataSekolah, belum }: { rataSekolah: number; belum: number }) {
+  const { guru, kelas, mapel, siswa } = useData();
   return (
     <>
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -137,9 +129,10 @@ function AdminDasbor({ rataSekolah, belum }: { rataSekolah: number; belum: numbe
 }
 
 function GuruDasbor({ refId }: { refId: string }) {
+  const { guru, kelas, kkmMapel, mapelKelas, namaMapel, siswa } = useData();
   const { nilai } = useNilai();
   const g = guru.find((x) => x.id === refId)!;
-  const kelasDiampu = kelas.filter((k) => (mapelKelas[k.id] ?? []).includes(g.mapelId));
+  const kelasDiampu = kelas.filter((k) => (mapelKelas[k.id] ?? []).includes(g.mapelId ?? ""));
   const siswaDiampu = siswa.filter((s) => kelasDiampu.some((k) => k.id === s.kelasId));
   const barisNilai = nilai.filter((n) => n.mapelId === g.mapelId);
   const terisi = barisNilai.filter((n) => nilaiAkhir(n) > 0);
@@ -212,6 +205,7 @@ function GuruDasbor({ refId }: { refId: string }) {
 }
 
 function WaliDasbor({ refId }: { refId: string }) {
+  const { kelas, siswa } = useData();
   const { nilai } = useNilai();
   const k = kelas.find((x) => x.waliId === refId)!;
   const daftar = siswa.filter((s) => s.kelasId === k.id);
@@ -278,6 +272,7 @@ function WaliDasbor({ refId }: { refId: string }) {
 }
 
 function SiswaDasbor({ refId }: { refId: string }) {
+  const { kkmMapel, namaKelas, namaMapel, siswa } = useData();
   const { nilai } = useNilai();
   const s = siswa.find((x) => x.id === refId)!;
   const ns = nilai.filter((n) => n.siswaId === s.id);
