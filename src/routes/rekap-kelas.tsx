@@ -63,7 +63,7 @@ function RekapKelas() {
       <div className="mb-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <KartuStat label="Jumlah Siswa" nilai={baris.length} ikon={Users} catatan={k.nama} />
         <KartuStat label="Rata-rata Kelas" nilai={rataKelas} ikon={TrendingUp} catatan="Semua mata pelajaran" />
-        <KartuStat label="Peringkat 1" nilai={baris[0]?.rata ?? 0} ikon={Award} catatan={baris[0]?.s.nama} />
+        <KartuStat label="Peringkat 1" nilai={baris[0]?.rata ?? 0} ikon={Award} catatan={baris[0]?.s.nama ?? "-"} />
         <KartuStat
           label="Nilai Belum Lengkap"
           nilai={baris.reduce((a, b) => a + b.belum, 0)}

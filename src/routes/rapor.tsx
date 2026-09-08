@@ -45,7 +45,7 @@ function Rapor() {
       ? siswa.filter((s) => s.id === akun.refId)
       : siswa.filter((s) => s.kelasId === kelasWali?.id);
 
-  const [pilih, setPilih] = React.useState(pencarian.siswa ?? daftarSiswa[0]?.id ?? "");
+  const [pilih, setPilih] = React.useState(pencarian.siswa || daftarSiswa[0]?.id || "");
   const s = siswa.find((x) => x.id === pilih) ?? daftarSiswa[0];
 
   if (!akun || !s) {

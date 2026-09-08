@@ -197,7 +197,7 @@ export function KartuStat({
   label: string;
   nilai: React.ReactNode;
   ikon: React.ElementType;
-  catatan?: string;
+  catatan?: string | undefined;
 }) {
   return (
     <div className="rounded-xl border border-border bg-card p-4 shadow-sm">

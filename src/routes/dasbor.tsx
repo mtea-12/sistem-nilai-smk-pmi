@@ -265,6 +265,7 @@ function WaliDasbor({ refId }: { refId: string }) {
             </Link>
             <Link
               to="/rapor"
+              search={{ siswa: "" }}
               className="flex items-center justify-between rounded-lg border border-border px-4 py-3 text-sm font-medium hover:border-primary"
             >
               Cetak rapor siswa <FileText className="h-4 w-4 text-primary" />
