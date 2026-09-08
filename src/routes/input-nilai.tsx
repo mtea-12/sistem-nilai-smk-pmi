@@ -39,7 +39,7 @@ function InputNilai() {
     );
   }
 
-  const mapelId = g.mapelId;
+  const mapelId = g.mapelId ?? "";
   const daftar = siswa
     .filter((s) => s.kelasId === kls)
     .filter((s) => s.nama.toLowerCase().includes(cari.toLowerCase()) || s.nis.includes(cari));
