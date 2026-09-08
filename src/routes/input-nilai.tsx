@@ -60,25 +60,33 @@ function InputNilai() {
     setDraf((d) => ({ ...d, [siswaId]: { ...ambil(siswaId), [kolom]: bersih } }));
   }
 
+  const [menyimpan, setMenyimpan] = React.useState(false);
+
   function simpanSemua() {
     const ids = Object.keys(draf);
     if (ids.length === 0) {
       toast.info("Belum ada perubahan nilai untuk disimpan.");
       return;
     }
-    ids.forEach((id) => {
+    const baris = ids.map((id) => {
       const d = draf[id] ?? { tugas: "0", pts: "0", pas: "0" };
-      simpan({
+      return {
         siswaId: id,
         mapelId,
         tugas: Number(d.tugas || 0),
         pts: Number(d.pts || 0),
         pas: Number(d.pas || 0),
-      });
+      };
     });
 
-    setDraf({});
-    toast.success(`Nilai ${ids.length} siswa berhasil disimpan.`);
+    setMenyimpan(true);
+    simpan(baris)
+      .then(() => {
+        setDraf({});
+        toast.success(`Nilai ${ids.length} siswa berhasil disimpan.`);
+      })
+      .catch(() => toast.error("Gagal menyimpan nilai. Coba lagi."))
+      .finally(() => setMenyimpan(false));
   }
 
   const kkm = kkmMapel(mapelId);
@@ -134,8 +142,6 @@ function InputNilai() {
             {daftar.map((s, i) => {
               const v = ambil(s.id);
               const na = nilaiAkhir({
-                siswaId: s.id,
-                mapelId,
                 tugas: Number(v.tugas || 0),
                 pts: Number(v.pts || 0),
                 pas: Number(v.pas || 0),

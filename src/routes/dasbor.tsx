@@ -132,7 +132,7 @@ function GuruDasbor({ refId }: { refId: string }) {
   const { guru, kelas, kkmMapel, mapelKelas, namaMapel, siswa } = useData();
   const { nilai } = useNilai();
   const g = guru.find((x) => x.id === refId)!;
-  const kelasDiampu = kelas.filter((k) => (mapelKelas[k.id] ?? []).includes(g.mapelId));
+  const kelasDiampu = kelas.filter((k) => (mapelKelas[k.id] ?? []).includes(g.mapelId ?? ""));
   const siswaDiampu = siswa.filter((s) => kelasDiampu.some((k) => k.id === s.kelasId));
   const barisNilai = nilai.filter((n) => n.mapelId === g.mapelId);
   const terisi = barisNilai.filter((n) => nilaiAkhir(n) > 0);
